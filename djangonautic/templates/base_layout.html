@@ -6,6 +6,7 @@
     <title>Articles</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <link rel="stylesheet" href="{% static 'styles.css' %}">
   </head>
   <body>
@@ -14,13 +15,17 @@
       <nav>
         <ul>
           {% if user.is_authenticated %}
+            {% block username %}{% endblock username %}
+            {% block edit_delete %}{% endblock edit_delete %}
             <li>
               <form class="logout-link" action="{% url 'accounts:logout' %}" method="post">
                 {% csrf_token %}
                 <button type="submit">Logout</button>
               </form>
             </li>
-            <li><a href="{% url 'articles:create' %}" class="highlight">New Article</a></li>
+            {% block create %}
+              <li><a href="{% url 'articles:create' %}" class="highlight">New Article</a></li>
+            {% endblock create %}
           {% else %}
             <li><a href="{% url 'accounts:login' %}">Login</a></li>
             <li><a href="{% url 'accounts:signup' %}">Signup</a></li>

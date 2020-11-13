@@ -1,4 +1,12 @@
 {% extends 'base_layout.html' %}
+
+{% block edit_delete %}
+  {% if user == article.author %}
+    <li><a href="{% url 'articles:edit' slug=article.slug %}"><i class="far fa-edit"></i></a></li>
+    <li><a href="{% url 'articles:delete' slug=article.slug %}"><i class="far fa-trash-alt"></i></a></li>
+  {% endif %}
+{% endblock edit_delete %}
+
 {% block content %}
   <div class="article-detail">
     <div class="article">

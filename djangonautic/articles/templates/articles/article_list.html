@@ -1,4 +1,7 @@
 {% extends 'base_layout.html' %}
+{% block username %}
+  <li>Hello, <span class="username">{{ request.user.username }}</span></li>
+{% endblock username %}
 {% block content %}
     <h1>Article List</h1>
     <div class="articles">

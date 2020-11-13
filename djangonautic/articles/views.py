@@ -24,5 +24,29 @@ def article_create(request):
             instance.author = request.user
             instance.save()
             return redirect('articles:list')
-    form = forms.CreateArticle()
+    else:
+        form = forms.CreateArticle()
     return render(request, 'articles/article_create.html', {'form': form})
+
+def article_edit(request, slug):
+    # return HttpResponse('Edit page')
+    article = Article.objects.get(slug=slug)
+    if request.method == 'POST':
+        form = forms.EditArticle(request.POST, request.FILES)
+        if form.is_valid():
+            article.title = request.POST.get('title')
+            article.body = request.POST.get('body')
+            # article.slug = request.POST.get('slug')
+            article.author = request.user
+            article.save()
+            return redirect('articles:list')
+    else:
+        data_dict = {'title': article.title, 'body': article.body, 'thumb': article.thumb.url}
+        form = forms.EditArticle(data_dict)
+    return render(request, 'articles/article_edit.html', {'form': form, 'article': article})
+
+def article_delete(request, slug):
+    # return HttpResponse('Delete page')
+    article = Article.objects.get(slug=slug)
+    article.delete()
+    return redirect('articles:list')
