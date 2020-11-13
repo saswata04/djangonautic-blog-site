@@ -2,8 +2,8 @@
 
 {% block edit_delete %}
   {% if user == article.author %}
-    <li><a href="{% url 'articles:edit' slug=article.slug %}"><i class="far fa-edit"></i></a></li>
-    <li><a href="{% url 'articles:delete' slug=article.slug %}"><i class="far fa-trash-alt"></i></a></li>
+    <li><a href="{% url 'articles:edit' id=article.id %}"><i class="far fa-edit"></i></a></li>
+    <li><a href="{% url 'articles:delete' id=article.id %}"><i class="far fa-trash-alt"></i></a></li>
   {% endif %}
 {% endblock edit_delete %}
 
@@ -12,8 +12,8 @@
     <div class="article">
       <img src="{{ article.thumb.url }}" alt="thumbnail">
       <h2>{{ article.title }}</h2>
-      <p>{{ article.body }}</p>
-      <p>{{ article.date }}</p>
+      <p>{{ article.body|linebreaks }}</p>
+      <p class="right-side">{{ article.date }}</p>
     </div>
   </div>
 {% endblock content %}

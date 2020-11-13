@@ -6,7 +6,7 @@ app_name = 'articles'
 urlpatterns = [
     path('', views.article_list, name='list'),
     path('create/', views.article_create, name='create'),
-    path('<slug:slug>/', views.article_detail, name='detail'),
-    path('<slug:slug>/edit/', views.article_edit, name='edit'),
-    path('<slug:slug>/delete/', views.article_delete, name='delete'),
+    path('<int:id>/', views.article_detail, name='detail'),
+    path('<int:id>/edit/', views.article_edit, name='edit'),
+    path('<int:id>/delete/', views.article_delete, name='delete'),
 ]

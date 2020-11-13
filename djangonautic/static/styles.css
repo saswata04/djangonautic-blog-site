@@ -153,3 +153,22 @@ a.highlight{
 .username{
     color: #00dba0;
 }
+
+.right-side{
+    text-align: right;
+}
+
+.delete{
+    text-align: center;
+}
+
+.delete input{
+    display: inline-block;
+    box-sizing:border-box;
+    padding: 10px 50px;
+    cursor: pointer;
+}
+
+.delete input[value="Yes"]{
+    background: #FF5722;
+}

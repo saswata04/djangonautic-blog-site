@@ -3,7 +3,7 @@
 {% block content %}
 <div class="edit-article">
     <h2>Edit Article</h2>
-    <form class="site-form" action="{% url 'articles:edit' slug=article.slug %}" method="post" enctype="multipart/form-data">
+    <form class="site-form" action="{% url 'articles:edit' id=article.id %}" method="post" enctype="multipart/form-data">
       {% csrf_token %}
       {{ form }}
       <input type="submit" value="Edit">
